@@ -184,16 +184,7 @@ export default function Hero() {
               {/* Internal glow */}
               <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               
-              {/* Placeholder Content - Replace img tag src when ready */}
-              <div className="flex flex-col items-center gap-4 text-zinc-500">
-                <Code2 className="w-16 h-16 opacity-50" />
-                <span className="text-sm font-medium tracking-widest uppercase">Profile</span>
-              </div>
-
-              {/* 
-                Uncomment and update src when you have a profile picture:
-                <img src="/profile.jpg" alt="Chirag Tapre" className="absolute inset-0 w-full h-full object-cover" /> 
-              */}
+              <img src="/profile.jpg" alt="Chirag Tapre" className="absolute inset-0 w-full h-full object-cover" />
             </motion.div>
           </motion.div>
         </div>
