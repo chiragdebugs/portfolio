@@ -10,7 +10,7 @@ import { Code2, Layout, Server, Terminal, Wrench, Lightbulb } from "lucide-react
 export const personalInfo = {
   name: "Chirag Tapre",
   role: "Aspiring Full Stack Developer | Python Stack Developer | AI & Full Stack Enthusiast",
-  location: "Nashik, Maharashtra, India",
+  location: "Pune, Maharashtra, India",
   bio: "Pre-final year Electronics & Communication Engineering student with hands-on experience building scalable full-stack applications. Currently developing an enterprise Vendor Reliability Intelligence Platform using Angular, FastAPI, and PostgreSQL. I am deeply interested in Full Stack Development, Artificial Intelligence, DevOps, and building robust, production-ready software.",
   email: "taprechirag150@gmail.com",
   github: "https://github.com/chiragdebugs",
