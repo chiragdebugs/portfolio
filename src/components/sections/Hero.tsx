@@ -184,7 +184,9 @@ export default function Hero() {
               {/* Internal glow */}
               <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               
-              <img src="/profile.jpg" alt="Chirag Tapre" className="absolute inset-0 w-full h-full object-cover" />
+              <div className="text-8xl md:text-9xl font-black text-transparent bg-clip-text bg-gradient-to-br from-white to-zinc-500/50">
+                CT
+              </div>
             </motion.div>
           </motion.div>
         </div>
