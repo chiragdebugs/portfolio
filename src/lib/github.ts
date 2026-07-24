@@ -1,6 +1,7 @@
 import { Repository } from "@/types";
 
 const TARGET_REPOS = [
+  "repolens-ai",
   "billbuddy-ai",
   "AI-DevOps-Log-Analyzer",
   "shadow-spending-detector",
