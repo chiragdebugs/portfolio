@@ -15,7 +15,7 @@ interface Project {
   image: string;
   liveUrl?: string;
   githubUrl: string;
-  icon: React.ElementType;
+  icon: React.ComponentType<{ className?: string }>;
 }
 
 const projects: Project[] = [

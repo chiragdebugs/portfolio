@@ -27,13 +27,13 @@ export default function Navbar() {
     <motion.header
       initial={{ y: -50, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+      transition={{ duration: 0.6 }}
       className="fixed top-0 left-0 right-0 z-40 px-4 sm:px-8 py-4 pointer-events-none"
     >
       <div
         className={`max-w-6xl mx-auto flex items-center justify-between px-5 py-3 rounded-full pointer-events-auto transition-all duration-300 ${
           scrolled
-            ? "bg-[#0D0F12]/80 backdrop-blur-xl border border-white/10 shadow-2xl shadow-black/50"
+            ? "bg-[#0D0F12]/85 backdrop-blur-xl border border-white/10 shadow-2xl shadow-black/50"
             : "bg-transparent border border-transparent"
         }`}
       >
@@ -53,34 +53,34 @@ export default function Navbar() {
         {/* Navigation Links */}
         <nav className="hidden md:flex items-center gap-6 text-sm font-mono-code text-zinc-400">
           <button
-            onClick={() => scrollToSection("about")}
-            className="hover:text-white transition-colors cursor-pointer"
+            onClick={() => scrollToSection("home")}
+            className="hover:text-[#00F0FF] transition-colors cursor-pointer"
           >
-            01. About
-          </button>
-          <button
-            onClick={() => scrollToSection("skills")}
-            className="hover:text-white transition-colors cursor-pointer"
-          >
-            02. Skills
+            Home
           </button>
           <button
             onClick={() => scrollToSection("projects")}
-            className="hover:text-white transition-colors cursor-pointer"
+            className="hover:text-[#00F0FF] transition-colors cursor-pointer"
           >
-            03. Projects
+            Projects
           </button>
           <button
-            onClick={() => scrollToSection("experience")}
-            className="hover:text-white transition-colors cursor-pointer"
+            onClick={() => scrollToSection("skills")}
+            className="hover:text-[#00F0FF] transition-colors cursor-pointer"
           >
-            04. Experience
+            Skills
+          </button>
+          <button
+            onClick={() => scrollToSection("about")}
+            className="hover:text-[#00F0FF] transition-colors cursor-pointer"
+          >
+            About
           </button>
           <button
             onClick={() => scrollToSection("contact")}
-            className="hover:text-white transition-colors cursor-pointer"
+            className="hover:text-[#00F0FF] transition-colors cursor-pointer"
           >
-            05. Contact
+            Contact
           </button>
         </nav>
 
@@ -90,7 +90,7 @@ export default function Navbar() {
             href="https://github.com/chiragdebugs"
             target="_blank"
             rel="noopener noreferrer"
-            data-cursor="GITHUB"
+            data-cursor="GITHUB ↗"
             className="p-2 text-zinc-400 hover:text-white hover:bg-white/5 rounded-full transition-colors"
             aria-label="GitHub Profile"
           >
@@ -100,7 +100,7 @@ export default function Navbar() {
             href="https://www.linkedin.com/in/chirag-tapre-47a426192/"
             target="_blank"
             rel="noopener noreferrer"
-            data-cursor="LINKEDIN"
+            data-cursor="LINKEDIN ↗"
             className="p-2 text-zinc-400 hover:text-white hover:bg-white/5 rounded-full transition-colors"
             aria-label="LinkedIn Profile"
           >
@@ -110,7 +110,7 @@ export default function Navbar() {
           <button
             onClick={() => scrollToSection("contact")}
             data-cursor="TALK →"
-            className="ml-2 inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-mono-code font-medium bg-white/5 hover:bg-[#00F0FF]/10 text-white hover:text-[#00F0FF] border border-white/10 hover:border-[#00F0FF]/30 transition-all cursor-pointer"
+            className="ml-1 inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-mono-code font-medium bg-[#00F0FF]/10 text-[#00F0FF] border border-[#00F0FF]/30 hover:bg-[#00F0FF] hover:text-black transition-all cursor-pointer"
           >
             <span>Let&apos;s Talk</span>
             <ArrowUpRight className="w-3.5 h-3.5" />

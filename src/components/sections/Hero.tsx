@@ -1,131 +1,163 @@
 "use client";
 
-import React from "react";
-import { motion } from "framer-motion";
-import { ArrowRight, ArrowUpRight, Code2 } from "lucide-react";
-import DeveloperGraph from "./DeveloperGraph";
-import Terminal from "./Terminal";
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowRight, ArrowDown, Terminal as TerminalIcon, Sparkles } from "lucide-react";
+import DevTerminalModal from "../ui/DevTerminalModal";
+import Tilt from "react-parallax-tilt";
+
+const taglines = [
+  "Building AI-Powered Developer Tools",
+  "Automating Complex Engineering Workflows",
+  "Full Stack JS + Python Specialist",
+  "Exploring Cloud Architecture & DevOps",
+];
 
 export default function Hero() {
-  const scrollToProjects = () => {
-    document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
+  const [taglineIndex, setTaglineIndex] = useState(0);
+  const [terminalOpen, setTerminalOpen] = useState(false);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTaglineIndex((prev) => (prev + 1) % taglines.length);
+    }, 3200);
+    return () => clearInterval(interval);
+  }, []);
+
+  const scrollTo = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const nameLetters = "CHIRAG TAPRE".split("");
+
   return (
-    <section className="min-h-screen pt-32 pb-20 px-4 sm:px-8 relative flex flex-col justify-center bg-[#08090A] overflow-hidden">
-      {/* Background Subtle Radial Glow & Grid */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-30 pointer-events-none" />
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#00F0FF]/5 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#8B5CF6]/5 rounded-full blur-[120px] pointer-events-none" />
+    <section id="home" className="min-h-screen w-full flex flex-col justify-between pt-32 pb-12 px-4 sm:px-8 relative z-10">
+      <DevTerminalModal isOpen={terminalOpen} onClose={() => setTerminalOpen(false)} />
 
-      <div className="max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center relative z-10">
+      {/* Main Hero Content */}
+      <div className="max-w-6xl mx-auto w-full my-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         
-        {/* Left Column - Headline & Introduction */}
-        <div className="lg:col-span-7 flex flex-col text-left space-y-6">
+        {/* Left Column Text & Taglines */}
+        <div className="lg:col-span-7 space-y-8 text-left">
           
-          {/* Small Intro Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-mono-code text-[#00F0FF] w-fit"
-          >
-            <Code2 className="w-3.5 h-3.5" />
-            <span>HELLO, I&apos;M CHIRAG TAPRE.</span>
-          </motion.div>
+          {/* Staggered Name Reveal */}
+          <div className="space-y-2">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-mono-code text-[#00F0FF]">
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>FULL STACK DEVELOPER &amp; AI BUILDER</span>
+            </div>
 
-          {/* Large Engineering Headline */}
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.08] font-sans"
-          >
-            I BUILD SOFTWARE <br className="hidden sm:inline" />
-            THAT SOLVES <br className="hidden sm:inline" />
-            <span className="accent-glow-text">REAL PROBLEMS.</span>
-          </motion.h1>
+            <h1 className="text-5xl sm:text-7xl lg:text-8xl font-extrabold tracking-tight text-white flex flex-wrap leading-none font-sans">
+              {nameLetters.map((letter, idx) => (
+                <motion.span
+                  key={idx}
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: idx * 0.04 }}
+                  className={letter === " " ? "mr-4" : ""}
+                >
+                  {letter}
+                </motion.span>
+              ))}
+            </h1>
+          </div>
 
-          {/* Subtitle */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg sm:text-xl text-zinc-300 font-medium max-w-xl"
-          >
-            Full Stack Developer exploring DevOps, Cloud and intelligent software systems.
-          </motion.p>
+          {/* Rotating Tagline */}
+          <div className="h-10 flex items-center overflow-hidden">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={taglineIndex}
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: -20, opacity: 0 }}
+                transition={{ duration: 0.4 }}
+                className="text-lg sm:text-2xl font-mono-code font-bold text-[#00F0FF] flex items-center gap-2"
+              >
+                <span className="w-2 h-2 rounded-full bg-[#00F0FF] animate-pulse" />
+                <span>{taglines[taglineIndex]}</span>
+              </motion.div>
+            </AnimatePresence>
+          </div>
 
-          {/* Detailed Paragraph */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-sm sm:text-base text-zinc-400 leading-relaxed max-w-xl font-light"
-          >
-            I don&apos;t just make websites. I build complete software products across modern frontend frameworks (React, Angular), high-performance backend APIs (FastAPI, Node.js), PostgreSQL/MongoDB databases, AI model integrations, and cloud deployments.
-          </motion.p>
+          <p className="text-base sm:text-lg text-zinc-300 font-light max-w-xl leading-relaxed">
+            Pre-final year Electronics &amp; Communication Engineering student passionate about crafting intelligent software tools, scalable full-stack applications, and automated developer utilities.
+          </p>
 
           {/* CTAs */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="flex flex-wrap items-center gap-4 pt-2"
-          >
+          <div className="flex flex-wrap items-center gap-4 pt-2">
             <button
-              onClick={scrollToProjects}
+              onClick={() => scrollTo("projects")}
               data-cursor="EXPLORE"
-              className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-[#00F0FF] hover:bg-[#38BDF8] text-black font-semibold text-sm transition-all shadow-lg shadow-[#00F0FF]/20 hover:shadow-[#00F0FF]/40 cursor-pointer"
+              className="inline-flex items-center gap-2.5 px-7 py-4 rounded-xl bg-[#00F0FF] hover:bg-[#38BDF8] text-black font-bold text-sm font-mono-code transition-all shadow-xl shadow-[#00F0FF]/20 hover:scale-105 active:scale-95 cursor-pointer"
             >
-              <span>Explore My Work</span>
+              <span>Explore Projects</span>
               <ArrowRight className="w-4 h-4" />
             </button>
 
-            <a
-              href="https://github.com/chiragdebugs"
-              target="_blank"
-              rel="noopener noreferrer"
-              data-cursor="OPEN ↗"
-              className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white font-mono-code text-xs transition-colors"
+            <button
+              onClick={() => setTerminalOpen(true)}
+              data-cursor="TERMINAL"
+              className="inline-flex items-center gap-2 px-5 py-4 rounded-xl bg-[#0D0F12] hover:bg-[#161922] border border-[#00F0FF]/40 text-[#00F0FF] font-mono-code text-xs transition-all hover:scale-105 active:scale-95 cursor-pointer"
             >
-              <span>GitHub</span>
-              <ArrowUpRight className="w-3.5 h-3.5 text-zinc-400" />
-            </a>
+              <TerminalIcon className="w-4 h-4" />
+              <span>Launch Terminal CLI</span>
+            </button>
+          </div>
 
-            <a
-              href="https://www.linkedin.com/in/chirag-tapre-47a426192/"
-              target="_blank"
-              rel="noopener noreferrer"
-              data-cursor="OPEN ↗"
-              className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white font-mono-code text-xs transition-colors"
-            >
-              <span>LinkedIn</span>
-              <ArrowUpRight className="w-3.5 h-3.5 text-zinc-400" />
-            </a>
-          </motion.div>
-
-          {/* Hero Terminal Snippet */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="pt-4 max-w-lg"
-          >
-            <Terminal />
-          </motion.div>
         </div>
 
-        {/* Right Column - Architecture Visual Graph */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.7, delay: 0.3 }}
-          className="lg:col-span-5 w-full flex justify-center"
-        >
-          <DeveloperGraph />
-        </motion.div>
+        {/* Right Column Tilt Hero Card */}
+        <div className="lg:col-span-5 flex justify-center">
+          <Tilt tiltMaxAngleX={15} tiltMaxAngleY={15} perspective={1000} scale={1.02} transitionSpeed={1000} className="w-full max-w-md">
+            <div className="p-8 rounded-3xl bg-[#0D0F12]/90 border border-white/10 backdrop-blur-xl shadow-2xl space-y-6 relative overflow-hidden group">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[#00F0FF]/10 rounded-full blur-2xl group-hover:bg-[#00F0FF]/20 transition-all" />
 
+              <div className="flex items-center justify-between border-b border-white/10 pb-4">
+                <span className="text-xs font-mono-code text-[#00F0FF] uppercase tracking-wider font-bold">DEVELOPER STATUS</span>
+                <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping" />
+              </div>
+
+              <div className="space-y-3 font-mono-code text-xs">
+                <div className="flex justify-between py-1.5 border-b border-white/5">
+                  <span className="text-zinc-500">ROLE</span>
+                  <span className="text-white font-bold">Software Developer</span>
+                </div>
+                <div className="flex justify-between py-1.5 border-b border-white/5">
+                  <span className="text-zinc-500">INTERNSHIP</span>
+                  <span className="text-purple-400 font-bold">Infosys Springboard</span>
+                </div>
+                <div className="flex justify-between py-1.5 border-b border-white/5">
+                  <span className="text-zinc-500">EDUCATION</span>
+                  <span className="text-zinc-300">SPPU (2024–2028)</span>
+                </div>
+                <div className="flex justify-between py-1.5">
+                  <span className="text-zinc-500">GITHUB</span>
+                  <span className="text-[#00F0FF] font-bold">chiragdebugs</span>
+                </div>
+              </div>
+
+              <div className="pt-2 text-center">
+                <span className="text-[11px] font-mono-code text-zinc-400">
+                  Press <kbd className="px-1.5 py-0.5 rounded bg-white/10 text-white">CLI</kbd> to execute system commands
+                </span>
+              </div>
+            </div>
+          </Tilt>
+        </div>
+
+      </div>
+
+      {/* Bouncing Scroll Down Indicator */}
+      <div className="flex justify-center pt-8">
+        <button
+          onClick={() => scrollTo("projects")}
+          className="flex flex-col items-center gap-2 text-xs font-mono-code text-zinc-400 hover:text-[#00F0FF] transition-colors cursor-pointer"
+        >
+          <span>SCROLL DOWN</span>
+          <motion.div animate={{ y: [0, 8, 0] }} transition={{ repeat: Infinity, duration: 1.5 }}>
+            <ArrowDown className="w-4 h-4 text-[#00F0FF]" />
+          </motion.div>
+        </button>
       </div>
     </section>
   );
