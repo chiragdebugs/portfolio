@@ -1,30 +1,23 @@
-import BackgroundScene from "@/components/3d/BackgroundScene";
-import SmoothScroll from "@/components/ui/SmoothScroll";
-import ScrollProgress from "@/components/ui/ScrollProgress";
-import CustomCursor from "@/components/ui/CustomCursor";
-import Navbar from "@/components/sections/Navbar";
-import Hero from "@/components/sections/Hero";
-import Projects from "@/components/sections/Projects";
-import Skills from "@/components/sections/Skills";
-import AboutTimeline from "@/components/sections/AboutTimeline";
-import Contact from "@/components/sections/Contact";
-import Footer from "@/components/sections/Footer";
+import Hero from "@/components/Hero";
+import SelectedWork from "@/components/SelectedWork";
+import Skills from "@/components/Skills";
+import About from "@/components/About";
+import Experience from "@/components/Experience";
+import GitHubSection from "@/components/GitHubSection";
+import Contact from "@/components/Contact";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <SmoothScroll>
-      <main className="min-h-screen bg-[#08090A] text-[#F5F7FA] relative font-sans overflow-x-hidden">
-        <BackgroundScene />
-        <ScrollProgress />
-        <CustomCursor />
-        <Navbar />
-        <Hero />
-        <Projects />
-        <Skills />
-        <AboutTimeline />
-        <Contact />
-        <Footer />
-      </main>
-    </SmoothScroll>
+    <main className="min-h-screen bg-[#0C0C0C] text-white relative font-sans overflow-x-hidden selection:bg-[#F598F2] selection:text-black">
+      <Hero />
+      <SelectedWork />
+      <Skills />
+      <About />
+      <Experience />
+      <GitHubSection />
+      <Contact />
+      <Footer />
+    </main>
   );
 }

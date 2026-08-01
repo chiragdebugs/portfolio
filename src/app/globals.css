@@ -1,72 +1,140 @@
 @import "tailwindcss";
 
-@theme {
-  --color-background: #08090A;
-  --color-surface-1: #0D0F12;
-  --color-surface-2: #111318;
-  --color-surface-3: #161922;
-
-  --color-primary: #F5F7FA;
-  --color-secondary: #8B949E;
-  --color-muted: #484F58;
-
-  --color-accent-cyan: #00F0FF;
-  --color-accent-blue: #0A84FF;
-  --color-accent-violet: #8B5CF6;
-}
-
 @layer base {
-  * {
-    box-sizing: border-box;
+  :root {
+    --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
   }
-  html {
-    scroll-behavior: smooth;
-    background-color: #08090A;
-    color: #F5F7FA;
-  }
+
   body {
-    background-color: #08090A;
-    color: #F5F7FA;
-    font-family: var(--font-sans), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    overflow-x: hidden;
+    font-family: var(--font-figtree), sans-serif;
+    background-color: #0c0c0c;
+    color: #ffffff;
+    overflow-x: clip;
   }
 }
 
-/* Developer Grid Texture */
-.bg-grid-pattern {
-  background-size: 36px 36px;
-  background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+/* Animations */
+@keyframes videoFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
-.bg-dot-pattern {
-  background-size: 24px 24px;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+@keyframes revealUp {
+  from {
+    opacity: 0;
+    transform: translateY(80px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* Glass panel */
-.glass-panel {
-  background: rgba(13, 15, 18, 0.7);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+@keyframes revealRight {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
-/* Monospace font utility */
-.font-mono-code {
-  font-family: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+@keyframes dotPulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.45;
+    transform: scale(1.45);
+  }
 }
 
-/* Gradient headlines */
-.headline-gradient {
-  background: linear-gradient(180deg, #FFFFFF 0%, #B0C4DE 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+/* Navigation Underline Utility */
+.nav-link-underline {
+  position: relative;
+  display: inline-block;
 }
 
-.accent-glow-text {
-  background: linear-gradient(135deg, #FFFFFF 20%, #38BDF8 60%, #00F0FF 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.nav-link-underline::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #f598f2;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s var(--ease-spring);
+}
+
+.nav-link-underline:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Role Selector Link Utility */
+.role-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: transform 0.4s var(--ease-spring), opacity 0.4s var(--ease-spring);
+  cursor: pointer;
+}
+
+.role-link:hover {
+  transform: translateX(4px);
+}
+
+/* Minimal CTA Button Fill Effect */
+.cta-button-fill {
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+  transition: border-color 0.4s var(--ease-spring), color 0.4s var(--ease-spring);
+}
+
+.cta-button-fill::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: #f598f2;
+  transform: translateY(101%);
+  transition: transform 0.4s var(--ease-spring);
+  z-index: 0;
+}
+
+.cta-button-fill:hover {
+  border-color: #f598f2;
+  color: #000000;
+}
+
+.cta-button-fill:hover::before {
+  transform: translateY(0);
+}
+
+.cta-button-fill > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Reduced motion overrides */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

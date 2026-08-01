@@ -1,46 +1,25 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Figtree } from "next/font/google";
 import "./globals.css";
-import { Analytics } from "@vercel/analytics/react";
 
-const inter = Inter({
-  variable: "--font-sans",
+const figtree = Figtree({
+  variable: "--font-figtree",
   subsets: ["latin"],
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-mono",
-  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Chirag Tapre | Full Stack Developer",
-  description: "Full Stack Developer building scalable web applications, AI-powered products and exploring DevOps and cloud technologies.",
-  keywords: [
-    "Chirag Tapre",
-    "Full Stack Developer",
-    "DevOps",
-    "Software Engineer",
-    "React",
-    "FastAPI",
-    "PostgreSQL",
-    "Next.js",
-    "Portfolio"
-  ],
-  authors: [{ name: "Chirag Tapre" }],
-  creator: "Chirag Tapre",
+  title: "Chirag Tapre — Software Engineer & Developer",
+  description:
+    "Portfolio of Chirag Tapre. Building modern digital products across software, AI, and cloud.",
   openGraph: {
-    title: "Chirag Tapre | Full Stack Developer",
-    description: "Full Stack Developer building scalable web applications, AI-powered products and exploring DevOps and cloud technologies.",
-    url: "https://chiragtapre.com",
+    title: "Chirag Tapre — Software Engineer & Developer",
+    description:
+      "Portfolio of Chirag Tapre. Building modern digital products across software, AI, and cloud.",
+    url: "https://github.com/chiragdebugs",
     siteName: "Chirag Tapre Portfolio",
-    locale: "en_US",
     type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Chirag Tapre | Full Stack Developer",
-    description: "Full Stack Developer building scalable web applications, AI-powered products and exploring DevOps and cloud technologies.",
   },
 };
 
@@ -50,13 +29,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${inter.variable} ${jetbrainsMono.variable} h-full antialiased dark`}
-    >
-      <body className="min-h-full flex flex-col bg-[#08090A] text-[#F5F7FA] font-sans antialiased overflow-x-hidden selection:bg-[#00F0FF]/20 selection:text-[#00F0FF]">
+    <html lang="en" className={`${figtree.variable} scroll-smooth`}>
+      <body className="bg-[#0C0C0C] text-white font-sans antialiased selection:bg-[#F598F2] selection:text-black overflow-x-hidden">
         {children}
-        <Analytics />
       </body>
     </html>
   );
