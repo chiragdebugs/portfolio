@@ -116,13 +116,17 @@ export async function getRepositories(): Promise<Repository[]> {
         homepage: repo.homepage,
       }));
 
+const CUSTOM_IMAGES: Record<string, string> = {
+  "repolens-ai": "/images/repolens-ai.png",
+};
+
     // Fetch README data in parallel for the selected repos
     const reposWithReadme = await Promise.all(
       selectedRepos.map(async (repo) => {
         const readmeData = await getReadmeData("chiragdebugs", repo.name);
         return {
           ...repo,
-          image: readmeData.image,
+          image: CUSTOM_IMAGES[repo.name] || readmeData.image,
           // Use README description if GitHub description is null or too short (< 20 chars)
           description: (!repo.description || repo.description.length < 20) && readmeData.description 
             ? readmeData.description 
