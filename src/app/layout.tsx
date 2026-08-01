@@ -10,9 +10,9 @@ const kanit = Kanit({
 });
 
 export const metadata: Metadata = {
-  title: "Chirag Tapre – 3D Creator",
-  description: "A 3D creator driven by crafting striking and unforgettable projects.",
-  keywords: ["Chirag Tapre", "3D Creator", "3D Modeling", "Motion Design", "Full Stack Developer", "Portfolio"],
+  title: "Chirag Tapre -- Full Stack Developer",
+  description: "Full stack developer crafting scalable, intelligent and impactful digital experiences.",
+  keywords: ["Chirag Tapre", "Full Stack Developer", "DevOps", "Python Developer", "React Developer", "FastAPI", "Portfolio"],
   authors: [{ name: "Chirag Tapre" }],
   creator: "Chirag Tapre",
 };

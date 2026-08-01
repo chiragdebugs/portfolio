@@ -3,31 +3,31 @@
 import React from "react";
 import FadeIn from "./FadeIn";
 
-const services = [
+const expertiseItems = [
   {
     id: "01",
-    name: "3D Modeling",
-    description: "Creation of detailed objects, characters, or environments tailored to specific client needs, ideal for games, products, and visualizations.",
+    name: "Full Stack Development",
+    description: "Building complete web applications with modern frontend and backend technologies, focusing on performance, scalability and maintainable architecture.",
   },
   {
     id: "02",
-    name: "Rendering",
-    description: "High-quality, photorealistic renders that showcase designs with custom lighting, textures, and materials to bring concepts to life.",
+    name: "Frontend Development",
+    description: "Creating responsive and modern user interfaces using React, Angular, TypeScript and Tailwind CSS with strong attention to user experience.",
   },
   {
     id: "03",
-    name: "Motion Design",
-    description: "Dynamic animations and motion graphics that add energy and storytelling to brands, products, and digital experiences.",
+    name: "Backend & APIs",
+    description: "Developing backend services, REST APIs and application logic using Node.js, FastAPI, Java and modern database systems.",
   },
   {
     id: "04",
-    name: "Branding",
-    description: "Crafting cohesive visual identities -- from logos to full brand systems -- that communicate a clear and memorable presence.",
+    name: "DevOps & Cloud",
+    description: "Working with Docker, Git/GitHub, CI/CD fundamentals and AWS while continuously expanding knowledge of cloud-native development and deployment.",
   },
   {
     id: "05",
-    name: "Web Design",
-    description: "Designing clean, modern, and conversion-focused websites with attention to layout, typography, and user experience.",
+    name: "AI-Powered Applications",
+    description: "Building intelligent software experiences by integrating AI models, APIs and automation into practical full-stack applications.",
   },
 ];
 
@@ -37,24 +37,24 @@ export default function ServicesSection() {
       <div className="max-w-6xl mx-auto">
         <FadeIn delay={0} y={40}>
           <h2 className="font-black uppercase text-center text-[#0C0C0C] leading-none tracking-tight text-[clamp(3rem,12vw,160px)] mb-16 sm:mb-20 md:mb-28">
-            Services
+            Expertise
           </h2>
         </FadeIn>
 
         <div className="max-w-5xl mx-auto divide-y divide-[#0C0C0C]/15 border-t border-b border-[#0C0C0C]/15">
-          {services.map((service, i) => (
-            <FadeIn key={service.id} delay={i * 0.1} y={20}>
+          {expertiseItems.map((item, i) => (
+            <FadeIn key={item.id} delay={i * 0.1} y={20}>
               <div className="py-8 sm:py-10 md:py-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 md:gap-12">
                 <div className="font-black text-[#0C0C0C] leading-none text-[clamp(3rem,10vw,140px)] min-w-[120px]">
-                  {service.id}
+                  {item.id}
                 </div>
 
                 <div className="flex-1 flex flex-col justify-center">
                   <h3 className="font-medium uppercase text-[#0C0C0C] text-[clamp(1rem,2.2vw,2.1rem)] mb-2">
-                    {service.name}
+                    {item.name}
                   </h3>
                   <p className="font-light leading-relaxed max-w-2xl text-[#0C0C0C]/60 text-[clamp(0.85rem,1.6vw,1.25rem)]">
-                    {service.description}
+                    {item.description}
                   </p>
                 </div>
               </div>

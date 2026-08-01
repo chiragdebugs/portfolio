@@ -67,8 +67,8 @@ export default function AboutSection() {
 
         <div className="mt-10 sm:mt-14 md:mt-16 mb-16 sm:mb-20 md:mb-24">
           <AnimatedText
-            text="With more than five years of experience in design, i focus on branding, web design, and user experience, i truly enjoy working with businesses that aim to stand out and present their best image. Let's build something incredible together!"
-            className="text-[#D7E2EA] font-medium leading-relaxed max-w-[560px] text-[clamp(1rem,2vw,1.35rem)]"
+            text="I'm a pre-final year Electronics & Communication Engineering student and Full Stack Developer passionate about building scalable and impactful software. I work across modern frontend and backend technologies including React, Angular, Node.js, FastAPI, PostgreSQL and MongoDB, while expanding my skills in DevOps, cloud infrastructure and system design. I enjoy turning ideas into polished products and solving real-world problems through technology."
+            className="text-[#D7E2EA] font-medium leading-relaxed max-w-[620px] text-[clamp(1rem,1.8vw,1.3rem)]"
           />
         </div>
 

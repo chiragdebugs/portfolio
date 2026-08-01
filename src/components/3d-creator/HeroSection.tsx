@@ -22,7 +22,7 @@ export default function HeroSection() {
             About
           </button>
           <button onClick={() => scrollTo("services")} className="hover:opacity-70 transition-opacity duration-200 cursor-pointer">
-            Price
+            Skills
           </button>
           <button onClick={() => scrollTo("projects")} className="hover:opacity-70 transition-opacity duration-200 cursor-pointer">
             Projects
@@ -37,7 +37,7 @@ export default function HeroSection() {
       <div className="w-full overflow-hidden z-0">
         <FadeIn delay={0.15} y={40}>
           <h1 className="hero-heading font-black uppercase tracking-tight leading-none whitespace-nowrap w-full text-[14vw] sm:text-[15vw] md:text-[16vw] lg:text-[17.5vw] mt-6 sm:mt-4 md:-mt-5 text-center">
-            Hi, i&apos;m Chirag Tapre
+            Hi, i&apos;m Chirag
           </h1>
         </FadeIn>
       </div>
@@ -54,7 +54,7 @@ export default function HeroSection() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="https://shrug-person-78902957.figma.site/_components/v2/d24c01ad3a56fc65e942a1f501eb73db42d7cf9a/Rectangle_40443.81459862.png"
-              alt="Chirag Tapre 3D Portrait"
+              alt="Chirag Tapre Portrait"
               className="w-full h-auto object-contain pointer-events-none drop-shadow-2xl"
             />
           </Magnet>
@@ -64,8 +64,8 @@ export default function HeroSection() {
       {/* Bottom Bar */}
       <div className="w-full px-6 md:px-10 pb-7 sm:pb-8 md:pb-10 flex justify-between items-end relative z-20">
         <FadeIn delay={0.35} y={20}>
-          <p className="text-[#D7E2EA] font-light uppercase tracking-wide leading-snug max-w-[160px] sm:max-w-[220px] md:max-w-[260px] text-[clamp(0.75rem,1.4vw,1.5rem)]">
-            a 3d creator driven by crafting striking and unforgettable projects
+          <p className="text-[#D7E2EA] font-light uppercase tracking-wide leading-snug max-w-[180px] sm:max-w-[240px] md:max-w-[300px] text-[clamp(0.75rem,1.4vw,1.5rem)]">
+            full stack developer crafting scalable, intelligent and impactful digital experiences
           </p>
         </FadeIn>
 

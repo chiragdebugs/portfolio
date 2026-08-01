@@ -13,35 +13,43 @@ interface ProjectData {
   col1Image2: string;
   col2Image: string;
   demoUrl?: string;
+  description: string;
+  techStack: string[];
 }
 
 const projectsData: ProjectData[] = [
   {
     id: "01",
-    name: "Nextlevel Studio",
-    category: "Client",
-    col1Image1: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055344_5eff02e0-87a5-41ce-b64f-eb08da8f33db.png&w=1280&q=85",
-    col1Image2: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055431_11d841fd-8b41-46a5-82e4-b04f2407a7d8.png&w=1280&q=85",
-    col2Image: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055451_e317bf2d-28d4-48cc-86b0-6f72f25b6327.png&w=1280&q=85",
+    name: "RepoLens AI",
+    category: "AI / FULL STACK",
+    description: "AI-powered application that analyzes public GitHub repositories and generates structured architecture reports, repository health scores, learning paths, and dependency analysis.",
+    techStack: ["Next.js 15", "TypeScript", "Tailwind CSS", "Gemini API", "Upstash Redis"],
+    col1Image1: "/images/repolens-ai.png",
+    col1Image2: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055344_5eff02e0-87a5-41ce-b64f-eb08da8f33db.png&w=1280&q=85",
+    col2Image: "/images/repolens-ai.png",
     demoUrl: "https://repolens-ai-coral.vercel.app/",
   },
   {
     id: "02",
-    name: "Aura Brand Identity",
-    category: "Personal",
-    col1Image1: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055654_911201c5-36d9-4bc6-bac7-331adfce159f.png&w=1280&q=85",
-    col1Image2: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055723_5ceda0b8-d9c2-4665-b2e3-83ba19ba76d1.png&w=1280&q=85",
-    col2Image: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055753_adc5dcbd-a8e6-49c0-b43a-9b030d835cea.png&w=1280&q=85",
-    demoUrl: "https://slash-urlshortner.vercel.app/",
+    name: "BillBuddy AI",
+    category: "FULL STACK / FINTECH",
+    description: "Full-stack expense sharing and bill management platform designed for tracking group expenses, calculating exact settlements, and managing payments.",
+    techStack: ["React", "TypeScript", "Tailwind CSS", "Supabase", "Razorpay"],
+    col1Image1: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80&w=1000",
+    col1Image2: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055654_911201c5-36d9-4bc6-bac7-331adfce159f.png&w=1280&q=85",
+    col2Image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80&w=1000",
+    demoUrl: "https://github.com/chiragdebugs/billbuddy-ai",
   },
   {
     id: "03",
-    name: "Solaris Digital",
-    category: "Client",
-    col1Image1: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055759_963cfb0b-4bd1-4b0f-9d0a-09bd6cf95b2f.png&w=1280&q=85",
-    col1Image2: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_060108_438f781a-9846-4dcc-89ab-c4e6cb830f5b.png&w=1280&q=85",
-    col2Image: "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055818_9d062121-ad7e-46b9-999a-1a6a692ef1ee.png&w=1280&q=85",
-    demoUrl: "https://github.com/chiragdebugs",
+    name: "Slash URL Shortener",
+    category: "FINTECH / FULL STACK",
+    description: "Enterprise-grade URL shortener and real-time clickstream analytics platform featuring custom WebGL shaders, Supabase Cloud Postgres, and Next.js 16.",
+    techStack: ["Next.js 16", "Three.js", "Supabase", "Tailwind v4", "WebGL"],
+    col1Image1: "https://raw.githubusercontent.com/chiragdebugs/urlshortner/main/public/images/hero.png",
+    col1Image2: "https://raw.githubusercontent.com/chiragdebugs/urlshortner/main/public/images/features.png",
+    col2Image: "https://raw.githubusercontent.com/chiragdebugs/urlshortner/main/public/images/cta.png",
+    demoUrl: "https://slash-urlshortner.vercel.app/",
   },
 ];
 
@@ -111,7 +119,7 @@ function Card({
           </div>
 
           {/* Right Column (60% width / 7 cols) */}
-          <div className="md:col-span-7 h-full">
+          <div className="md:col-span-7 h-full flex flex-col gap-4">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={project.col2Image}
