@@ -1,23 +1,72 @@
 @import "tailwindcss";
 
+@theme {
+  --color-background: #08090A;
+  --color-surface-1: #0D0F12;
+  --color-surface-2: #111318;
+  --color-surface-3: #161922;
+
+  --color-primary: #F5F7FA;
+  --color-secondary: #8B949E;
+  --color-muted: #484F58;
+
+  --color-accent-cyan: #00F0FF;
+  --color-accent-blue: #0A84FF;
+  --color-accent-violet: #8B5CF6;
+}
+
 @layer base {
   * {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
   }
-
-  html, body, #root {
-    background-color: #0C0C0C;
-    font-family: var(--font-kanit), 'Kanit', sans-serif;
-    color: #D7E2EA;
+  html {
     scroll-behavior: smooth;
-    overflow-x: clip;
+    background-color: #08090A;
+    color: #F5F7FA;
+  }
+  body {
+    background-color: #08090A;
+    color: #F5F7FA;
+    font-family: var(--font-sans), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    overflow-x: hidden;
   }
 }
 
-.hero-heading {
-  background: linear-gradient(180deg, #646973 0%, #BBCCD7 100%);
+/* Developer Grid Texture */
+.bg-grid-pattern {
+  background-size: 36px 36px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+.bg-dot-pattern {
+  background-size: 24px 24px;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+}
+
+/* Glass panel */
+.glass-panel {
+  background: rgba(13, 15, 18, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Monospace font utility */
+.font-mono-code {
+  font-family: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+/* Gradient headlines */
+.headline-gradient {
+  background: linear-gradient(180deg, #FFFFFF 0%, #B0C4DE 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.accent-glow-text {
+  background: linear-gradient(135deg, #FFFFFF 20%, #38BDF8 60%, #00F0FF 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

@@ -1,14 +1,12 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link";
-import { personalInfo } from "@/data/portfolio";
-import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { ArrowUpRight } from "lucide-react";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,127 +16,107 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Prevent scroll when mobile menu is open
-  useEffect(() => {
-    if (mobileMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
+  const scrollToSection = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
     }
-    return () => {
-      document.body.style.overflow = "unset";
-    };
-  }, [mobileMenuOpen]);
-
-  const navLinks = [
-    { name: "About", href: "#about" },
-    { name: "Skills", href: "#skills" },
-    { name: "Experience", href: "#experience" },
-    { name: "Projects", href: "#projects" },
-  ];
+  };
 
   return (
-    <>
-      <motion.nav 
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-        className="fixed top-6 left-0 right-0 z-50 flex justify-center pointer-events-none px-4"
+    <motion.header
+      initial={{ y: -50, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+      className="fixed top-0 left-0 right-0 z-40 px-4 sm:px-8 py-4 pointer-events-none"
+    >
+      <div
+        className={`max-w-6xl mx-auto flex items-center justify-between px-5 py-3 rounded-full pointer-events-auto transition-all duration-300 ${
+          scrolled
+            ? "bg-[#0D0F12]/80 backdrop-blur-xl border border-white/10 shadow-2xl shadow-black/50"
+            : "bg-transparent border border-transparent"
+        }`}
       >
-        <div 
-          className={`pointer-events-auto flex items-center justify-between transition-all duration-500 rounded-full ${
-            scrolled 
-              ? "px-6 py-3 bg-[#0A0A0A]/80 backdrop-blur-xl border border-white/10 shadow-2xl w-full max-w-3xl" 
-              : "px-6 py-4 bg-transparent border-transparent w-full max-w-5xl"
-          }`}
+        {/* Brand Logo */}
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          className="flex items-center gap-2 group cursor-pointer"
         >
-          <Link href="/" className="text-lg font-semibold tracking-tight text-white hover:text-white/80 transition-colors">
-            Chirag<span className="text-zinc-600">.</span>
-          </Link>
+          <span className="font-mono-code font-bold text-lg text-white group-hover:text-[#00F0FF] transition-colors">
+            CT<span className="text-[#00F0FF]">.</span>
+          </span>
+          <span className="hidden sm:inline-block text-xs font-mono-code text-zinc-400 group-hover:text-white transition-colors uppercase tracking-widest border-l border-white/10 pl-2">
+            Chirag Tapre
+          </span>
+        </button>
 
-          {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-400">
-            {navLinks.map((link) => (
-              <Link key={link.name} href={link.href} className="hover:text-white transition-colors">
-                {link.name}
-              </Link>
-            ))}
-            <motion.a 
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              href={personalInfo.resume} 
-              target="_blank" 
-              rel="noreferrer" 
-              className="text-black px-4 py-1.5 rounded-full bg-white hover:bg-zinc-200 transition-colors font-medium"
-            >
-              Resume
-            </motion.a>
-          </div>
-
-          {/* Mobile Menu Toggle */}
-          <button 
-            className="md:hidden flex items-center justify-center p-2 text-zinc-400 hover:text-white transition-colors"
-            onClick={() => setMobileMenuOpen(true)}
-            aria-label="Open Mobile Menu"
+        {/* Navigation Links */}
+        <nav className="hidden md:flex items-center gap-6 text-sm font-mono-code text-zinc-400">
+          <button
+            onClick={() => scrollToSection("about")}
+            className="hover:text-white transition-colors cursor-pointer"
           >
-            <Menu className="w-5 h-5" />
+            01. About
+          </button>
+          <button
+            onClick={() => scrollToSection("skills")}
+            className="hover:text-white transition-colors cursor-pointer"
+          >
+            02. Skills
+          </button>
+          <button
+            onClick={() => scrollToSection("projects")}
+            className="hover:text-white transition-colors cursor-pointer"
+          >
+            03. Projects
+          </button>
+          <button
+            onClick={() => scrollToSection("experience")}
+            className="hover:text-white transition-colors cursor-pointer"
+          >
+            04. Experience
+          </button>
+          <button
+            onClick={() => scrollToSection("contact")}
+            className="hover:text-white transition-colors cursor-pointer"
+          >
+            05. Contact
+          </button>
+        </nav>
+
+        {/* Right Socials & CTA */}
+        <div className="flex items-center gap-3">
+          <a
+            href="https://github.com/chiragdebugs"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-cursor="GITHUB"
+            className="p-2 text-zinc-400 hover:text-white hover:bg-white/5 rounded-full transition-colors"
+            aria-label="GitHub Profile"
+          >
+            <FaGithub className="w-4 h-4" />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/chirag-tapre-47a426192/"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-cursor="LINKEDIN"
+            className="p-2 text-zinc-400 hover:text-white hover:bg-white/5 rounded-full transition-colors"
+            aria-label="LinkedIn Profile"
+          >
+            <FaLinkedin className="w-4 h-4" />
+          </a>
+
+          <button
+            onClick={() => scrollToSection("contact")}
+            data-cursor="TALK →"
+            className="ml-2 inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-mono-code font-medium bg-white/5 hover:bg-[#00F0FF]/10 text-white hover:text-[#00F0FF] border border-white/10 hover:border-[#00F0FF]/30 transition-all cursor-pointer"
+          >
+            <span>Let&apos;s Talk</span>
+            <ArrowUpRight className="w-3.5 h-3.5" />
           </button>
         </div>
-      </motion.nav>
-
-      {/* Mobile Menu Overlay */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
-            animate={{ opacity: 1, backdropFilter: "blur(20px)" }}
-            exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
-            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 z-[60] bg-[#0A0A0A]/90 flex flex-col justify-center px-6"
-          >
-            <button 
-              className="absolute top-8 right-8 p-2 text-zinc-400 hover:text-white transition-colors"
-              onClick={() => setMobileMenuOpen(false)}
-              aria-label="Close Mobile Menu"
-            >
-              <X className="w-8 h-8" />
-            </button>
-            <div className="flex flex-col gap-8 text-2xl font-medium tracking-tight">
-              {navLinks.map((link, idx) => (
-                <motion.div
-                  key={link.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 + idx * 0.1, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                >
-                  <Link 
-                    href={link.href} 
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="text-white hover:text-zinc-400 transition-colors"
-                  >
-                    {link.name}
-                  </Link>
-                </motion.div>
-              ))}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                className="mt-4"
-              >
-                <a 
-                  href={personalInfo.resume} 
-                  target="_blank" 
-                  rel="noreferrer" 
-                  className="inline-flex items-center justify-center text-black px-6 py-3 rounded-full bg-white hover:bg-zinc-200 transition-colors font-semibold"
-                >
-                  Download Resume
-                </a>
-              </motion.div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+      </div>
+    </motion.header>
   );
 }

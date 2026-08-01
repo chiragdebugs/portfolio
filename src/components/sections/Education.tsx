@@ -1,59 +1,109 @@
 "use client";
 
+import React from "react";
 import { motion } from "framer-motion";
-import { education } from "@/data/portfolio";
-import { GraduationCap, MapPin } from "lucide-react";
+import { GraduationCap, Award, CheckCircle2 } from "lucide-react";
 
 export default function Education() {
-  return (
-    <section id="education" className="py-24 relative border-t border-white/5">
-      <div className="container mx-auto px-6 max-w-5xl">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-16"
-        >
-          <h2 className="text-sm font-medium text-zinc-500 uppercase tracking-widest mb-4">
-            Education
-          </h2>
-          <h3 className="text-3xl md:text-4xl font-medium text-white mb-6 tracking-tight">
-            Academic Background
-          </h3>
-        </motion.div>
+  const educationData = {
+    degree: "Bachelor of Engineering (B.E.)",
+    major: "Electronics & Communication Engineering",
+    institution: "Savitribai Phule Pune University (SPPU)",
+    duration: "2024 – 2028",
+    description: "Pre-final year engineering student pursuing advanced coursework in full stack software development, computer networks, AI integrations, and embedded systems logic.",
+  };
 
-        <div className="flex flex-col gap-6">
-          {education.map((item, index) => (
-            <motion.div
-              key={item.id}
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group flex flex-col md:flex-row md:items-start justify-between gap-6 p-8 rounded-2xl border border-white/5 bg-gradient-to-br from-white/[0.02] to-transparent hover:bg-white/[0.04] hover:border-white/10 transition-all duration-300"
-            >
-              <div className="flex gap-6 items-start">
-                <div className="hidden sm:flex w-14 h-14 rounded-full bg-blue-500/10 border border-blue-500/20 items-center justify-center shrink-0 text-blue-400 group-hover:scale-110 transition-transform duration-300">
-                  <GraduationCap className="w-7 h-7" />
-                </div>
-                <div>
-                  <h3 className="text-2xl font-medium text-white mb-2">{item.degree}</h3>
-                  <p className="text-lg text-blue-400 font-medium mb-3">{item.major}</p>
-                  <div className="flex flex-wrap items-center gap-4 text-zinc-400 font-medium">
-                    <span className="flex items-center gap-1.5">
-                      <MapPin className="w-4 h-4 text-zinc-500" />
-                      {item.institution}
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div className="inline-flex items-center self-start md:self-center px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-sm font-medium text-zinc-300 tracking-wide">
-                {item.duration}
-              </div>
-            </motion.div>
-          ))}
+  const certifications = [
+    { title: "Introduction to Front-End Development", issuer: "Meta" },
+    { title: "Cyber Job Simulation", issuer: "Deloitte Australia" },
+    { title: "GenAI Powered Data Analytics", issuer: "Tata" },
+    { title: "McKinsey Forward Program", issuer: "McKinsey & Company" },
+    { title: "Cybersecurity for Everyone", issuer: "University of Maryland" },
+  ];
+
+  return (
+    <section className="py-28 px-4 sm:px-8 relative bg-[#08090A]">
+      <div className="max-w-6xl mx-auto space-y-16">
+        
+        {/* Section Header */}
+        <div className="flex flex-col space-y-4">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-xs font-mono-code text-[#00F0FF] uppercase tracking-widest flex items-center gap-2"
+          >
+            <span className="w-6 h-[1px] bg-[#00F0FF]" />
+            <span>06 / ACADEMICS & CREDENTIALS</span>
+          </motion.div>
+
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-3xl sm:text-5xl font-extrabold text-white leading-tight font-sans"
+          >
+            FOUNDATION & <span className="accent-glow-text">CERTIFICATIONS.</span>
+          </motion.h2>
         </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          
+          {/* Education Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-6 p-8 rounded-3xl bg-[#0D0F12] border border-white/10 space-y-4 shadow-xl"
+          >
+            <div className="flex items-center gap-3 text-[#00F0FF] text-xs font-mono-code uppercase tracking-wider font-bold">
+              <GraduationCap className="w-5 h-5 text-[#00F0FF]" />
+              <span>ACADEMIC DEGREE</span>
+            </div>
+
+            <div>
+              <h3 className="text-2xl font-extrabold text-white font-sans">{educationData.degree}</h3>
+              <p className="text-sm font-mono-code text-purple-400 mt-1">{educationData.major}</p>
+              <p className="text-xs font-mono-code text-zinc-400 mt-0.5">{educationData.institution} • {educationData.duration}</p>
+            </div>
+
+            <p className="text-sm text-zinc-300 font-light leading-relaxed pt-2 border-t border-white/5">
+              {educationData.description}
+            </p>
+          </motion.div>
+
+          {/* Certifications Grid */}
+          <div className="lg:col-span-6 space-y-4">
+            <div className="flex items-center gap-2 text-xs font-mono-code text-zinc-400 uppercase tracking-wider font-bold pb-2 border-b border-white/10">
+              <Award className="w-4 h-4 text-[#00F0FF]" />
+              <span>Industry Certifications & Programs</span>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {certifications.map((cert, idx) => (
+                <motion.div
+                  key={cert.title}
+                  initial={{ opacity: 0, y: 15 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: idx * 0.08 }}
+                  className="p-4 rounded-xl bg-[#0D0F12] border border-white/10 space-y-1 hover:border-[#00F0FF]/30 transition-all"
+                >
+                  <div className="flex items-center gap-2 text-xs font-bold text-white">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#00F0FF] shrink-0" />
+                    <span className="line-clamp-1">{cert.title}</span>
+                  </div>
+                  <p className="text-[11px] font-mono-code text-zinc-400 pl-5.5">{cert.issuer}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+        </div>
+
       </div>
     </section>
   );

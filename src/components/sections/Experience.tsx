@@ -1,92 +1,115 @@
 "use client";
 
+import React from "react";
 import { motion } from "framer-motion";
-import { experience } from "@/data/portfolio";
-import { Briefcase, Calendar } from "lucide-react";
+import { Briefcase, Calendar, CheckCircle2 } from "lucide-react";
 
 export default function Experience() {
-  return (
-    <section id="experience" className="py-24 relative border-t border-white/5">
-      <div className="container mx-auto px-6 max-w-5xl">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-16"
-        >
-          <h2 className="text-sm font-medium text-zinc-500 uppercase tracking-widest mb-4">
-            Experience
-          </h2>
-          <h3 className="text-3xl md:text-4xl font-medium text-white mb-6 tracking-tight">
-            Professional Journey
-          </h3>
-          <p className="text-zinc-400 max-w-2xl text-lg">
-            My work experience, internships, and the real-world platforms I&apos;ve contributed to.
-          </p>
-        </motion.div>
+  const experiences = [
+    {
+      role: "Python Stack Developer Intern",
+      company: "Infosys Springboard",
+      duration: "June 2026 – Present",
+      project: "Vendor Reliability Intelligence Platform",
+      techStack: ["Angular", "FastAPI", "PostgreSQL", "REST APIs", "Role-Based Auth"],
+      responsibilities: [
+        "Developing a full-stack Vendor Reliability Intelligence & Procurement Risk Management Platform using Angular, FastAPI, and PostgreSQL.",
+        "Implementing vendor management, procurement workflows, and performance tracking modules with role-based authentication.",
+        "Building reliability scoring logic and analytics dashboards to surface actionable procurement insights.",
+        "Collaborating on API design and database schema to ensure scalable, maintainable full stack architecture."
+      ]
+    }
+  ];
 
-        <div className="relative border-l border-white/10 ml-3 md:ml-4">
-          {experience.map((item, index) => (
+  return (
+    <section id="experience" className="py-28 px-4 sm:px-8 relative bg-[#08090A]">
+      <div className="max-w-6xl mx-auto space-y-16">
+        
+        {/* Section Header */}
+        <div className="flex flex-col space-y-4">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-xs font-mono-code text-[#00F0FF] uppercase tracking-widest flex items-center gap-2"
+          >
+            <span className="w-6 h-[1px] bg-[#00F0FF]" />
+            <span>04 / EXPERIENCE</span>
+          </motion.div>
+
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-3xl sm:text-5xl font-extrabold text-white leading-tight font-sans"
+          >
+            BUILDING BEYOND <br />
+            <span className="accent-glow-text">PERSONAL PROJECTS.</span>
+          </motion.h2>
+        </div>
+
+        {/* Timeline List */}
+        <div className="space-y-8 relative before:absolute before:inset-0 before:left-3 sm:before:left-4 before:w-[2px] before:bg-white/10">
+          {experiences.map((exp, idx) => (
             <motion.div
-              key={item.id}
-              initial={{ opacity: 0, x: -10 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              key={exp.role}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="mb-16 relative pl-10 last:mb-0 group"
+              transition={{ duration: 0.6, delay: idx * 0.1 }}
+              className="relative pl-10 sm:pl-12 space-y-4"
             >
-              {/* Timeline Dot */}
-              <div className="absolute left-[-5px] top-1.5 w-2.5 h-2.5 rounded-full bg-blue-500 ring-4 ring-[#0A0A0A] group-hover:scale-150 group-hover:bg-blue-400 transition-all duration-300" />
-              
-              <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-4">
-                <div>
-                  <h3 className="text-2xl font-medium text-white mb-1 flex items-center gap-3">
-                    {item.role}
-                  </h3>
-                  <div className="flex items-center gap-3 text-zinc-400 font-medium">
-                    <Briefcase className="w-4 h-4" />
-                    <span>{item.company}</span>
+              {/* Timeline Marker Node */}
+              <div className="absolute left-0 top-1.5 w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-[#0D0F12] border-2 border-[#00F0FF] flex items-center justify-center -translate-x-1/2 shadow-lg shadow-[#00F0FF]/20">
+                <Briefcase className="w-3 h-3 text-[#00F0FF]" />
+              </div>
+
+              {/* Main Experience Card */}
+              <div className="p-6 sm:p-8 rounded-2xl bg-[#0D0F12] border border-white/10 space-y-4 shadow-xl">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-white/5 pb-4">
+                  <div>
+                    <h3 className="text-xl sm:text-2xl font-bold text-white font-sans uppercase">
+                      {exp.role}
+                    </h3>
+                    <p className="text-sm font-mono-code text-[#00F0FF] font-medium mt-0.5">
+                      {exp.company}
+                    </p>
+                  </div>
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono-code text-zinc-400 w-fit">
+                    <Calendar className="w-3.5 h-3.5 text-[#00F0FF]" />
+                    <span>{exp.duration}</span>
                   </div>
                 </div>
-                <div className="flex items-center gap-2 text-sm font-medium text-zinc-500 bg-white/5 px-3 py-1.5 rounded-lg border border-white/5 whitespace-nowrap">
-                  <Calendar className="w-4 h-4" />
-                  {item.duration}
-                </div>
-              </div>
-              
-              {/* Project Title (if exists) */}
-              {item.project && (
-                <div className="mb-4 inline-flex px-3 py-1 bg-blue-500/10 border border-blue-500/20 rounded-md text-blue-400 text-sm font-medium">
-                  Project: {item.project}
-                </div>
-              )}
 
-              {/* Responsibilities */}
-              {item.responsibilities && (
-                <ul className="space-y-3 mb-6">
-                  {item.responsibilities.map((resp, i) => (
-                    <li key={i} className="flex items-start text-zinc-300 group/item">
-                      <span className="mr-3 text-blue-500/50 group-hover/item:text-blue-400 transition-colors mt-1.5">▹</span>
-                      <span className="leading-relaxed">{resp}</span>
-                    </li>
-                  ))}
-                </ul>
-              )}
+                <div className="space-y-3">
+                  <div className="text-xs font-mono-code text-zinc-400 font-bold uppercase tracking-wider">
+                    Project: <span className="text-white">{exp.project}</span>
+                  </div>
 
-              {/* Tech Stack */}
-              {item.techStack && (
-                <div className="flex flex-wrap gap-2 mt-4 pt-4 border-t border-white/[0.03]">
-                  {item.techStack.map((tech, i) => (
-                    <span key={i} className="px-3 py-1.5 text-xs font-medium bg-white/[0.03] border border-white/10 rounded-lg text-zinc-400 hover:text-white hover:border-white/20 transition-colors">
+                  <ul className="space-y-2">
+                    {exp.responsibilities.map((resp, i) => (
+                      <li key={i} className="flex items-start gap-2.5 text-sm text-zinc-300 font-light leading-relaxed">
+                        <CheckCircle2 className="w-4 h-4 text-[#00F0FF] shrink-0 mt-0.5" />
+                        <span>{resp}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="flex flex-wrap gap-2 pt-2 border-t border-white/5">
+                  {exp.techStack.map((tech) => (
+                    <span key={tech} className="px-2.5 py-1 rounded-md text-[11px] font-mono-code bg-white/5 border border-white/10 text-zinc-300">
                       {tech}
                     </span>
                   ))}
                 </div>
-              )}
+              </div>
             </motion.div>
           ))}
         </div>
+
       </div>
     </section>
   );
