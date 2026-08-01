@@ -87,6 +87,15 @@ function parseReadme(markdown: string, username: string, repo: string) {
   return { image, description };
 }
 
+const CUSTOM_IMAGES: Record<string, string> = {
+  "repolens-ai": "/images/repolens-ai.png",
+};
+
+const CUSTOM_HOMEPAGES: Record<string, string> = {
+  "urlshortner": "https://slash-urlshortner.vercel.app/",
+  "repolens-ai": "https://repolens-ai-coral.vercel.app/",
+};
+
 export async function getRepositories(): Promise<Repository[]> {
   try {
     const res = await fetch(
@@ -113,12 +122,8 @@ export async function getRepositories(): Promise<Repository[]> {
         stars: repo.stargazers_count || 0,
         updated_at: repo.updated_at,
         html_url: repo.html_url,
-        homepage: repo.homepage,
+        homepage: CUSTOM_HOMEPAGES[repo.name] || repo.homepage,
       }));
-
-const CUSTOM_IMAGES: Record<string, string> = {
-  "repolens-ai": "/images/repolens-ai.png",
-};
 
     // Fetch README data in parallel for the selected repos
     const reposWithReadme = await Promise.all(
@@ -127,6 +132,7 @@ const CUSTOM_IMAGES: Record<string, string> = {
         return {
           ...repo,
           image: CUSTOM_IMAGES[repo.name] || readmeData.image,
+          homepage: CUSTOM_HOMEPAGES[repo.name] || repo.homepage,
           // Use README description if GitHub description is null or too short (< 20 chars)
           description: (!repo.description || repo.description.length < 20) && readmeData.description 
             ? readmeData.description 
