@@ -1,6 +1,7 @@
 import { Repository } from "@/types";
 
 const TARGET_REPOS = [
+  "urlshortner",
   "repolens-ai",
   "billbuddy-ai",
   "AI-DevOps-Log-Analyzer",
@@ -25,17 +26,17 @@ async function getReadmeData(username: string, repo: string): Promise<{ image: s
       if (!resMaster.ok) return { image: null, description: null };
       
       const text = await resMaster.text();
-      return parseReadme(text);
+      return parseReadme(text, username, repo);
     }
 
     const text = await res.text();
-    return parseReadme(text);
+    return parseReadme(text, username, repo);
   } catch {
     return { image: null, description: null };
   }
 }
 
-function parseReadme(markdown: string) {
+function parseReadme(markdown: string, username: string, repo: string) {
   // Extract first image url using markdown ![alt](url) or HTML <img src="url">
   let image: string | null = null;
   
@@ -57,20 +58,28 @@ function parseReadme(markdown: string) {
     }
   }
 
+  // Resolve relative image URLs against GitHub main branch
+  if (image && !image.startsWith('http')) {
+    const cleanPath = image.replace(/^\.\//, '');
+    image = `https://raw.githubusercontent.com/${username}/${repo}/main/${cleanPath}`;
+  }
+
   // Extract first proper paragraph as description
   let description: string | null = null;
   const lines = markdown.split('\n');
   for (const line of lines) {
     const trimmed = line.trim();
-    // Skip empty lines, headers, badges, images, html tags, and lists
+    // Skip empty lines, headers, badges, images, html tags, list items, dividers, and emoji status lines
     if (trimmed && 
         !trimmed.startsWith('#') && 
         !trimmed.startsWith('[') && 
         !trimmed.startsWith('!') && 
         !trimmed.startsWith('<') &&
-        !trimmed.startsWith('-') &&
-        !trimmed.startsWith('*')) {
-      description = trimmed;
+        !trimmed.startsWith('- ') &&
+        !trimmed.startsWith('* ') &&
+        !trimmed.startsWith('---') &&
+        !trimmed.match(/^[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/u)) {
+      description = trimmed.replace(/\*\*/g, '');
       break;
     }
   }
