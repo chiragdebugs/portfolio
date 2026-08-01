@@ -1,36 +1,19 @@
-import Hero from "@/components/sections/Hero";
-import About from "@/components/sections/About";
-import Skills from "@/components/sections/Skills";
-import Experience from "@/components/sections/Experience";
-import Education from "@/components/sections/Education";
-import Projects from "@/components/sections/Projects";
-import GithubStats from "@/components/sections/GithubStats";
-import Certifications from "@/components/sections/Certifications";
-import Achievements from "@/components/sections/Achievements";
-import Contact from "@/components/sections/Contact";
-import Footer from "@/components/sections/Footer";
-import Navbar from "@/components/sections/Navbar";
-import { getRepositories } from "@/lib/github";
+import HeroSection from "@/components/3d-creator/HeroSection";
+import MarqueeSection from "@/components/3d-creator/MarqueeSection";
+import AboutSection from "@/components/3d-creator/AboutSection";
+import ServicesSection from "@/components/3d-creator/ServicesSection";
+import ProjectsSection from "@/components/3d-creator/ProjectsSection";
+import ContactSection from "@/components/3d-creator/ContactSection";
 
-export const revalidate = 3600; // Revalidate every hour
-
-export default async function Home() {
-  const repositories = await getRepositories();
-
+export default function Home() {
   return (
-    <main className="min-h-screen">
-      <Navbar />
-      <Hero />
-      <About />
-      <Skills />
-      <Experience />
-      <Education />
-      <Projects repositories={repositories} />
-      <Achievements />
-      <GithubStats />
-      <Certifications />
-      <Contact />
-      <Footer />
+    <main className="min-h-screen bg-[#0C0C0C] text-[#D7E2EA] overflow-x-clip font-sans">
+      <HeroSection />
+      <MarqueeSection />
+      <AboutSection />
+      <ServicesSection />
+      <ProjectsSection />
+      <ContactSection />
     </main>
   );
 }
